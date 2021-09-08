@@ -1,0 +1,13 @@
+image: markhobson/maven-chrome
+
+cache:
+  paths:
+    - target/
+
+build&test:
+  stage: build
+  script:
+    - mvn dependency:go-offline
+    - mvn package
+
+
