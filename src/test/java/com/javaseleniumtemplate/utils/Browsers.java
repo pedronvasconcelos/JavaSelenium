@@ -21,8 +21,9 @@ public class Browsers {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("no-sandbox");
         chromeOptions.addArguments("--allow-running-insecure-content");
-        chromeOptions.addArguments("--lang=pt-BR");
+        chromeOptions.addArguments("--lang=en-US");
         chromeOptions.addArguments("download.default_directory", downloadPath);
+       //chromeOptions.addArguments("--headless");
         return new ChromeDriver(chromeOptions);
     }
 
@@ -30,7 +31,7 @@ public class Browsers {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("no-sandbox");
         chromeOptions.addArguments("--allow-running-insecure-content");
-        chromeOptions.addArguments("--lang=pt-BR");
+        chromeOptions.addArguments("--lang=en-US");
         chromeOptions.addArguments("download.default_directory", downloadPath);
 
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
@@ -49,7 +50,7 @@ public class Browsers {
     public static WebDriver getLocalChromeHeadless(){
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("download.default_directory", downloadPath);
-        chromeOptions.addArguments("--headless");
+        ///chromeOptions.addArguments("--headless");
 
         return new ChromeDriver(chromeOptions);
     }
@@ -58,7 +59,7 @@ public class Browsers {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("download.default_directory", downloadPath);
         chromeOptions.addArguments("--headless");
-        chromeOptions.addArguments("--lang=pt-BR");
+        chromeOptions.addArguments("--lang=en-US");
         chromeOptions.addArguments("--disable-gpu");
         chromeOptions.addArguments("window-size=1280,800");
 

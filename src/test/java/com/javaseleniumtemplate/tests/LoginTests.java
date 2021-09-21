@@ -7,7 +7,10 @@ import com.javaseleniumtemplate.pages.LoginPage;
 import com.javaseleniumtemplate.pages.MainPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.annotations.*;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class LoginTests extends TestBase {
     //Objects
@@ -26,7 +29,7 @@ public class LoginTests extends TestBase {
 
         //region Parameters
         String usuario = "administrator";
-        String senha = "administrator";
+        String senha = "adm";
         //endregion
 
         //region Test
@@ -39,14 +42,17 @@ public class LoginTests extends TestBase {
     public void efetuarLoginSemInformarUsuario(){
         //region Objects instances
         loginPage = new LoginPage();
+        loginFlows = new LoginFlows();
         //endregion
 
         //region Parameters
-        String mensagemErroEsperada = "Sua conta pode estar desativada ou bloqueada ou o nome de usuário e a senha que você digitou não estão corretos.";
+        String mensagemErroEsperada = "Your account may be disabled or blocked or the username/password you entered is incorrect.";
+        String usuario = "inexistente";
+        String senha = "123456";
         //endregion
 
         //region Test
-        loginPage.clicarEmLogin();
+        loginFlows.efetuarLogin(usuario, senha);
         Assert.assertEquals(mensagemErroEsperada, loginPage.retornaMensagemDeErroLogin());
         //endRegion
     }
@@ -60,7 +66,7 @@ public class LoginTests extends TestBase {
 
         //region Parameters
         String usuario = "administrator";
-        String mensagemErroEsperada = "Sua conta pode estar desativada ou bloqueada ou o nome de usuário e a senha que você digitou não estão corretos.";
+        String mensagemErroEsperada = "Your account may be disabled or blocked or the username/password you entered is incorrect.";
         //endregion
 
         //region Test
@@ -82,7 +88,7 @@ public class LoginTests extends TestBase {
         //region Parameters
         String usuario = "administrator";
         String senha = "senhaerrada";
-        String mensagemErroEsperada = "Sua conta pode estar desativada ou bloqueada ou o nome de usuário e a senha que você digitou não estão corretos.";
+        String mensagemErroEsperada = "Your account may be disabled or blocked or the username/password you entered is incorrect.";
         //endregion
 
         //region Test
@@ -98,7 +104,7 @@ public class LoginTests extends TestBase {
         mainPage = new MainPage();
 
         //Parameteres
-        String usuario = "templateautomacao";
+        String usuario = "administrator";
         String senha = UsuariosDBSteps.retornaSenhaDoUsuarioDB(usuario);
 
         //Test
@@ -108,4 +114,6 @@ public class LoginTests extends TestBase {
 
         Assert.assertEquals(usuario, mainPage.retornaUsernameDasInformacoesDeLogin());
     }
-}
+
+
+    }

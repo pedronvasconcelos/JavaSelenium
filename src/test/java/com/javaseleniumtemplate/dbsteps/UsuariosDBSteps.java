@@ -12,4 +12,9 @@ public class UsuariosDBSteps {
 
         return DBUtils.getQueryResult(query).get(0);
     }
+
+    public static String pesquisaUsers(){
+        String query = Utils.getFileContent(queriesPath + "retornaSenhaDoUsuario.sql");
+        return DBUtils.getQueryResult(query).get(0);
+    }
 }
