@@ -1,1 +1,3 @@
-SELECT username FROM mantis_user_table
+select senha
+  from usuarios
+ where usuario = '$usuario'

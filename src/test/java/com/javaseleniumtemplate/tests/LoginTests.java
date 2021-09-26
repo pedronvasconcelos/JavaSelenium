@@ -21,6 +21,7 @@ public class LoginTests extends TestBase {
     //Tests
     @Test
     public void efetuarLoginComSucesso(){
+
         //region Objects instances
         loginPage = new LoginPage();
         mainPage = new MainPage();
@@ -48,7 +49,7 @@ public class LoginTests extends TestBase {
         //region Parameters
         String mensagemErroEsperada = "Your account may be disabled or blocked or the username/password you entered is incorrect.";
         String usuario = "inexistente";
-        String senha = "123456";
+        String senha = "adm";
         //endregion
 
         //region Test
