@@ -1,3 +1,3 @@
-select senha
-  from usuarios
- where usuario = '$usuario'
+select password
+  from mantis_user_table
+ where username = '$usuario';

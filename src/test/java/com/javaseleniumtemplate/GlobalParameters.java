@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class GlobalParameters {
+    public static String DB_DATABASE;
     public static String BROWSER_DEFAULT;
     public static String EXECUTION;
     public static int TIMEOUT_DEFAULT;
@@ -17,7 +18,6 @@ public class GlobalParameters {
     public static String DOWNLOAD_DEFAULT_PATH;
     public static String REPORT_PATH;
     public static String DB_URL;
-    public static String DB_SID;
     public static String DB_USER;
     public static String DB_PASSWORD;
 
@@ -46,7 +46,7 @@ public class GlobalParameters {
         DOWNLOAD_DEFAULT_PATH = properties.getProperty("download.defaul.path");
         REPORT_PATH = properties.getProperty("report.path");
         DB_URL = properties.getProperty("db.url");
-        DB_SID = properties.getProperty("db.sid");
+        DB_DATABASE = properties.getProperty("db.database");
         DB_USER = properties.getProperty("db.user");
         DB_PASSWORD = properties.getProperty("db.password");
     }

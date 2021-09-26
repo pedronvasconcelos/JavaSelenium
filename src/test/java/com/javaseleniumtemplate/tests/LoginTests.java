@@ -8,9 +8,7 @@ import com.javaseleniumtemplate.pages.MainPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+
 
 public class LoginTests extends TestBase {
     //Objects
@@ -103,16 +101,14 @@ public class LoginTests extends TestBase {
         //Objects instances
         loginPage = new LoginPage();
         mainPage = new MainPage();
-
+        loginFlows = new LoginFlows();
         //Parameteres
         String usuario = "administrator";
         String senha = UsuariosDBSteps.retornaSenhaDoUsuarioDB(usuario);
 
         //Test
-        loginPage.preenhcerUsuario(usuario);
-        loginPage.preencherSenha(senha);
-        loginPage.clicarEmLogin();
-
+        loginFlows.efetuarLogin(usuario, senha);
+        System.out.println(senha);
         Assert.assertEquals(usuario, mainPage.retornaUsernameDasInformacoesDeLogin());
     }
 
