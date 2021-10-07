@@ -105,7 +105,6 @@ public class LoginTests extends TestBase {
         //Parameteres
         String usuario = "administrator";
         String senha = UsuariosDBSteps.retornaSenhaDoUsuarioDB(usuario);
-
         //Test
         loginFlows.efetuarLogin(usuario, senha);
         System.out.println(senha);

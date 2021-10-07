@@ -9,6 +9,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import java.io.IOException;
+
 
 public class ReportIssueTests extends TestBase {
     //Objects
@@ -87,13 +89,14 @@ public class ReportIssueTests extends TestBase {
         String senha = "adm";
         String resumo = "Teste com upload de arquivo";
         String descricao = "Teste com upload de arquivo";
+        String caminhoArquivo = "C:\\Desafio Base2\\javaseleniumextentreporttemplate-master\\images\\bug.jpg";
 
         //Test
         loginFlows.efetuarLogin(usuario, senha);
         mainPage.clicarEmReportIssue();
         bugReportPage.preencherResumo(resumo);
         bugReportPage.preencherDescricao(descricao);
-        bugReportPage.inserirAnexo("./images/bug.jpg");
+        bugReportPage.inserirAnexo(caminhoArquivo);
         bugReportPage.clicarEmSubmitReport();
         bugReportPage.clicarEmViewIssue();
 
@@ -101,6 +104,7 @@ public class ReportIssueTests extends TestBase {
 
         Assert.assertEquals(resumo, issuePage.retornaTextoBugSummary());
         Assert.assertEquals(descricao, issuePage.retornaTextoBugDescription());
+        Assert.assertTrue(issuePage.retornaNomeArquivo().contains("bug.jpg"));
 
     }
 }

@@ -251,4 +251,12 @@ public class PageBase {
         ExtentReportUtils.addTestInfo(2, "");
         return url;
     }
+    public String getTextAlert() {
+        String text = DriverFactory.INSTANCE.switchTo().alert().getText();
+        ExtentReportUtils.addTestInfo(3, text);
+        return text;
+    }
+    public void frameIn(By locator) {
+        DriverFactory.INSTANCE.switchTo().frame(waitForElement(locator));
+    }
 }
