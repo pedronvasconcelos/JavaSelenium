@@ -9,8 +9,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import java.io.IOException;
-
 
 public class ReportIssueTests extends TestBase {
     //Objects
@@ -32,19 +30,23 @@ public class ReportIssueTests extends TestBase {
         //Parameteres
         String usuario = "administrator";
         String senha = "adm";
+        String project = "Automação";
+        String categoria = "[All Projects] Automação";
         String resumo = "Resumo teste automático";
         String descricao = "Descrição teste automático";
 
         //Test
-        loginFlows.efetuarLogin(usuario, senha);
-        mainPage.clicarEmReportIssue();
-        bugReportPage.preencherResumo(resumo);
-        bugReportPage.preencherDescricao(descricao);
-        bugReportPage.clicarEmSubmitReport();
-        bugReportPage.clicarEmViewIssue();
+        loginFlows.signIn(usuario, senha);
+        mainPage.clickReportIssue();
+        bugReportPage.selectProject(project);
+        bugReportPage.clickSelectProject();
+        bugReportPage.selectCategory(categoria);
+        bugReportPage.fillResume(resumo);
+        bugReportPage.fillDescription(descricao);
+        bugReportPage.clickInSubmitReport();
+        bugReportPage.clickInViewIssue();
 
         //Assertions
-
         Assert.assertEquals(resumo, issuePage.retornaTextoBugSummary());
         Assert.assertEquals(descricao, issuePage.retornaTextoBugDescription());
 
@@ -60,52 +62,24 @@ public class ReportIssueTests extends TestBase {
         //Parameteres
         String usuario = "administrator";
         String senha = "adm";
+        String project = "Automação";
+        String categoria = "[All Projects] Automação";
         String descricao = "Descrição teste automático";
-        String endPoint = "bug_report_page.php";
+        String alertMessage = "Please fill out this field.";
+
 
         //Test
-        loginFlows.efetuarLogin(usuario, senha);
-        mainPage.clicarEmReportIssue();
-        bugReportPage.preencherDescricao(descricao);
-        bugReportPage.clicarEmSubmitReport();
-
-
-        //Assertions
-
-      Assert.assertTrue(bugReportPage.retornarURL().contains(endPoint));
-
-    }
-
-    @Test
-    public void cadastrarNovaIssueComSucessoRealizandoUploadDeEvidencia(){
-        //Objects instances
-        loginFlows = new LoginFlows();
-        mainPage = new MainPage();
-        bugReportPage = new BugReportPage();
-        issuePage = new IssuePage();
-
-        //Parameteres
-        String usuario = "administrator";
-        String senha = "adm";
-        String resumo = "Teste com upload de arquivo";
-        String descricao = "Teste com upload de arquivo";
-        String caminhoArquivo = "C:\\Desafio Base2\\javaseleniumextentreporttemplate-master\\images\\bug.jpg";
-
-        //Test
-        loginFlows.efetuarLogin(usuario, senha);
-        mainPage.clicarEmReportIssue();
-        bugReportPage.preencherResumo(resumo);
-        bugReportPage.preencherDescricao(descricao);
-        bugReportPage.inserirAnexo(caminhoArquivo);
-        bugReportPage.clicarEmSubmitReport();
-        bugReportPage.clicarEmViewIssue();
+        loginFlows.signIn(usuario, senha);
+        mainPage.clickReportIssue();
+        bugReportPage.selectProject(project);
+        bugReportPage.clickSelectProject();
+        bugReportPage.selectCategory(categoria);
+        bugReportPage.fillDescription(descricao);
+        bugReportPage.clickInSubmitReport();
 
         //Assertions
-
-        Assert.assertEquals(resumo, issuePage.retornaTextoBugSummary());
-        Assert.assertEquals(descricao, issuePage.retornaTextoBugDescription());
-        Assert.assertTrue(issuePage.retornaNomeArquivo().contains("bug.jpg"));
-
+        Assert.assertEquals(bugReportPage.alertSummaryText(), alertMessage);
     }
+
+
 }
-

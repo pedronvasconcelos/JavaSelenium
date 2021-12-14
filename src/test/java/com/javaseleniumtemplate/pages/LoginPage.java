@@ -11,19 +11,31 @@ public class LoginPage extends PageBase {
     By loginErroTextArea = By.xpath("//*[@class='alert alert-danger']/p");
 
     //Actions
-    public void preenhcerUsuario(String usuario){
+    public void fillUser(String usuario){
         sendKeys(usernameField, usuario);
     }
 
-    public void preencherSenha(String senha){
+    public void fillPassword(String senha){
         sendKeys(passwordField, senha);
     }
 
-    public void clicarEmLogin(){
+    public void clickLogin(){
         click(loginButton);
     }
 
-    public String retornaMensagemDeErroLogin(){
+    public String returnErrorMessage(){
         return getText(loginErroTextArea);
+    }
+
+    public void fillUserJs(String usuario){
+        SendKeysJavaScript(usernameField, usuario);
+    }
+
+    public void fillPasswordJs(String password){
+        SendKeysJavaScript(passwordField, password);
+    }
+
+    public void clickLoginJS(){
+        ClickJavaScript(loginButton);
     }
 }

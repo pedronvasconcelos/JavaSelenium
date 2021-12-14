@@ -1,7 +1,6 @@
 package com.javaseleniumtemplate.tests;
 
 import com.javaseleniumtemplate.bases.TestBase;
-import com.javaseleniumtemplate.dbsteps.UsuariosDBSteps;
 import com.javaseleniumtemplate.flows.LoginFlows;
 import com.javaseleniumtemplate.pages.LoginPage;
 import com.javaseleniumtemplate.pages.MainPage;
@@ -32,9 +31,30 @@ public class LoginTests extends TestBase {
         //endregion
 
         //region Test
-        loginFlows.efetuarLogin(usuario, senha);
+        loginFlows.signIn(usuario, senha);
         Assert.assertEquals(usuario, mainPage.retornaUsernameDasInformacoesDeLogin());
         //endregion
+    }
+
+    @Test
+    public void efetuarLoginComJavaScript(){
+
+        //region Objects instances
+        loginPage = new LoginPage();
+        mainPage = new MainPage();
+        loginFlows = new LoginFlows();
+        //endregion
+
+        //region Parameters
+        String usuario = "administrator";
+        String senha = "adm";
+        //endregion
+
+        //region Test
+        loginFlows.signInJs(usuario, senha);
+        Assert.assertEquals(usuario, mainPage.retornaUsernameDasInformacoesDeLogin());
+        //endregion
+
     }
 
     @Test
@@ -51,8 +71,8 @@ public class LoginTests extends TestBase {
         //endregion
 
         //region Test
-        loginFlows.efetuarLogin(usuario, senha);
-        Assert.assertEquals(mensagemErroEsperada, loginPage.retornaMensagemDeErroLogin());
+        loginFlows.signIn(usuario, senha);
+        Assert.assertEquals(mensagemErroEsperada, loginPage.returnErrorMessage());
         //endRegion
     }
 
@@ -69,11 +89,10 @@ public class LoginTests extends TestBase {
         //endregion
 
         //region Test
-        loginPage.preenhcerUsuario(usuario);
-        loginPage.clicarEmLogin();
-        loginPage.clicarEmLogin();
-        loginPage.retornaMensagemDeErroLogin();
-        Assert.assertEquals(mensagemErroEsperada, loginPage.retornaMensagemDeErroLogin());
+        loginPage.fillUser(usuario);
+        loginPage.clickLogin();
+        loginPage.clickLogin();loginPage.returnErrorMessage();
+        Assert.assertEquals(mensagemErroEsperada, loginPage.returnErrorMessage());
         //endregion
     }
 
@@ -91,24 +110,31 @@ public class LoginTests extends TestBase {
         //endregion
 
         //region Test
-        loginFlows.efetuarLogin(usuario, senha);
-        Assert.assertEquals(mensagemErroEsperada, loginPage.retornaMensagemDeErroLogin());
+        loginFlows.signIn(usuario, senha);
+        Assert.assertEquals(mensagemErroEsperada, loginPage.returnErrorMessage());
         //endregion
 
     }
+
     @Test
-    public void efetuarLoginComSucesso_SenhaRetornadaDoDB(){
-        //Objects instances
+    public void efetuarLoginComUsuarioInexistenet(){
+
+        //region Objects instances
         loginPage = new LoginPage();
         mainPage = new MainPage();
         loginFlows = new LoginFlows();
-        //Parameteres
-        String usuario = "administrator";
-        String senha = UsuariosDBSteps.retornaSenhaDoUsuarioDB(usuario);
-        //Test
-        loginFlows.efetuarLogin(usuario, senha);
-        System.out.println(senha);
-        Assert.assertEquals(usuario, mainPage.retornaUsernameDasInformacoesDeLogin());
+        //endregion
+
+        //region Parameters
+        String usuario = "inexistente";
+        String senha = "adm";
+        String mensagemErroEsperada = "Your account may be disabled or blocked or the username/password you entered is incorrect.";
+        //endregion
+
+        //region Test
+        loginFlows.signIn(usuario, senha);
+        Assert.assertEquals(mensagemErroEsperada, loginPage.returnErrorMessage());
+        //endregion
     }
 
 

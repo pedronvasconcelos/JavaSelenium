@@ -259,4 +259,11 @@ public class PageBase {
     public void frameIn(By locator) {
         DriverFactory.INSTANCE.switchTo().frame(waitForElement(locator));
     }
+
+    public String returnAlertRequired(By locator){
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        WebElement field = driver.findElement(locator);
+        String message = (String)js.executeScript("return arguments[0].validationMessage;", field);
+        return message;
+    }
 }

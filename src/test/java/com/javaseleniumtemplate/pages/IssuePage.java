@@ -9,6 +9,7 @@ public class IssuePage extends PageBase {
     By bugSummary = By.xpath("//*[@class='bug-summary']");
     By bugDescription = By.xpath("//*[@class='bug-description']");
     By archiveName = By.xpath("//td[contains(text(),'File Added')]");
+    By createdTag = By.xpath("//a[contains(text(),'replace')]");
     //Actions
 
     public String retornaTextoBugSummary(){
