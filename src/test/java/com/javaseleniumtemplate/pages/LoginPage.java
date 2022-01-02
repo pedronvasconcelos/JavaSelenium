@@ -38,4 +38,8 @@ public class LoginPage extends PageBase {
     public void clickLoginJS(){
         ClickJavaScript(loginButton);
     }
+
+    public String getCurrentUrl(){
+        return getURL();
+    }
 }

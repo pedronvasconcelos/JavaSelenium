@@ -6,7 +6,7 @@ import com.javaseleniumtemplate.pages.LoginPage;
 import com.javaseleniumtemplate.pages.MainPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
+import org.testng.asserts.SoftAssert;
 
 
 public class LoginTests extends TestBase {
@@ -14,128 +14,211 @@ public class LoginTests extends TestBase {
     LoginPage loginPage;
     MainPage mainPage;
     LoginFlows loginFlows;
+    SoftAssert softAssert;
 
     //Tests
     @Test
-    public void efetuarLoginComSucesso(){
+    public void loginSuccessfully(){
 
-        //region Objects instances
+        //Objects instances
         loginPage = new LoginPage();
         mainPage = new MainPage();
         loginFlows = new LoginFlows();
-        //endregion
 
-        //region Parameters
+
+        //Parameters
         String usuario = "administrator";
         String senha = "adm";
-        //endregion
 
-        //region Test
+
+        //Test
         loginFlows.signIn(usuario, senha);
+
+        //Assert
         Assert.assertEquals(usuario, mainPage.retornaUsernameDasInformacoesDeLogin());
-        //endregion
+
     }
 
     @Test
-    public void efetuarLoginComJavaScript(){
+    public void loginWithJavaScript(){
 
-        //region Objects instances
+        //Objects instances
         loginPage = new LoginPage();
         mainPage = new MainPage();
         loginFlows = new LoginFlows();
-        //endregion
 
-        //region Parameters
+        //Parameters
         String usuario = "administrator";
         String senha = "adm";
-        //endregion
 
-        //region Test
+        //Test
         loginFlows.signInJs(usuario, senha);
-        Assert.assertEquals(usuario, mainPage.retornaUsernameDasInformacoesDeLogin());
-        //endregion
 
+        //Assert
+        Assert.assertEquals(usuario, mainPage.retornaUsernameDasInformacoesDeLogin());
     }
 
     @Test
-    public void efetuarLoginSemInformarUsuario(){
-        //region Objects instances
+    public void loginWithoutAUsername(){
+        //Objects instances
         loginPage = new LoginPage();
         loginFlows = new LoginFlows();
-        //endregion
 
-        //region Parameters
+
+        //Parameters
         String mensagemErroEsperada = "Your account may be disabled or blocked or the username/password you entered is incorrect.";
         String usuario = "inexistente";
         String senha = "adm";
-        //endregion
 
-        //region Test
+
+        //Test
         loginFlows.signIn(usuario, senha);
+
+        //Assert
         Assert.assertEquals(mensagemErroEsperada, loginPage.returnErrorMessage());
-        //endRegion
+
     }
 
     @Test
-    public void efetuarLoginSemInformarSenha(){
+    public void loginWithoutPassword(){
 
-        //region Objects instances
+        //Objects instances
         loginPage = new LoginPage();
-        //endregion
 
-        //region Parameters
+
+        //Parameters
         String usuario = "administrator";
         String mensagemErroEsperada = "Your account may be disabled or blocked or the username/password you entered is incorrect.";
-        //endregion
 
-        //region Test
+
+        //Test
         loginPage.fillUser(usuario);
         loginPage.clickLogin();
         loginPage.clickLogin();loginPage.returnErrorMessage();
+
+        //Assert
         Assert.assertEquals(mensagemErroEsperada, loginPage.returnErrorMessage());
-        //endregion
+
     }
 
     @Test
-    public void efetuarLoginComSenhaErrada(){
+    public void loginWithWrongPassword(){
         //region Objects instances
         loginPage = new LoginPage();
         loginFlows = new LoginFlows();
         //endregion
 
-        //region Parameters
+        //Parameters
         String usuario = "administrator";
         String senha = "senhaerrada";
         String mensagemErroEsperada = "Your account may be disabled or blocked or the username/password you entered is incorrect.";
-        //endregion
 
-        //region Test
+
+        //Test
         loginFlows.signIn(usuario, senha);
+
+        //Assert
         Assert.assertEquals(mensagemErroEsperada, loginPage.returnErrorMessage());
-        //endregion
+
 
     }
 
     @Test
-    public void efetuarLoginComUsuarioInexistenet(){
+    public void loginWithNonExistentUser(){
 
-        //region Objects instances
+        //Objects instances
         loginPage = new LoginPage();
         mainPage = new MainPage();
         loginFlows = new LoginFlows();
-        //endregion
 
-        //region Parameters
+
+        //Parameters
         String usuario = "inexistente";
         String senha = "adm";
         String mensagemErroEsperada = "Your account may be disabled or blocked or the username/password you entered is incorrect.";
-        //endregion
+
 
         //region Test
         loginFlows.signIn(usuario, senha);
+
+        //Assert
         Assert.assertEquals(mensagemErroEsperada, loginPage.returnErrorMessage());
-        //endregion
+
     }
 
+    @Test
+    public void logoutSuccessfully(){
+
+        //Objects instances
+        loginPage = new LoginPage();
+        mainPage = new MainPage();
+        loginFlows = new LoginFlows();
+
+
+        //Parameters
+        String usuario = "administrator";
+        String senha = "adm";
+        String pageUrl = "http://localhost:8989/login_page.php";
+
+
+        //Test
+        loginFlows.signIn(usuario, senha);
+        mainPage.clickUserDropdown();
+        mainPage.clickLogout();
+
+
+        //Assertions
+        Assert.assertEquals(pageUrl, loginPage.getCurrentUrl());
+    }
+
+    @Test
+    public void validateRestrictionsUserViewer(){
+
+        //Objects instances
+        loginPage = new LoginPage();
+        mainPage = new MainPage();
+        loginFlows = new LoginFlows();
+        softAssert = new SoftAssert();
+
+
+        //Parameters
+        String usuario = "viewer";
+        String senha = "adm";
+
+
+        //Test
+        loginFlows.signIn(usuario, senha);
+
+
+        //Assertions
+        softAssert.assertFalse(mainPage.returnIfReportExists());
+        softAssert.assertFalse(mainPage.returnIfManageExists());
+        softAssert.assertAll();
+    }
+
+    @Test
+    public void validateRestrictionsUserDeveloperr(){
+
+        //Objects instances
+        loginPage = new LoginPage();
+        mainPage = new MainPage();
+        loginFlows = new LoginFlows();
+        softAssert = new SoftAssert();
+
+
+        //Parameters
+        String usuario = "desenvolvedor";
+        String senha = "adm";
+
+
+        //Test
+        loginFlows.signIn(usuario, senha);
+
+
+        //Assertions
+        softAssert.assertFalse(mainPage.returnIfManageExists());
+        softAssert.assertTrue(mainPage.returnIfReportExists());
+        softAssert.assertAll();
+    }
 
     }

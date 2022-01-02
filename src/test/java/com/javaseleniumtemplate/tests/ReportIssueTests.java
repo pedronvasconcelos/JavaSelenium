@@ -1,10 +1,12 @@
 package com.javaseleniumtemplate.tests;
 
+import com.javaseleniumtemplate.GlobalParameters;
 import com.javaseleniumtemplate.bases.TestBase;
 import com.javaseleniumtemplate.flows.LoginFlows;
 import com.javaseleniumtemplate.pages.BugReportPage;
 import com.javaseleniumtemplate.pages.MainPage;
 import com.javaseleniumtemplate.pages.IssuePage;
+import com.javaseleniumtemplate.pages.ViewIssuePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -16,11 +18,12 @@ public class ReportIssueTests extends TestBase {
     MainPage mainPage;
     BugReportPage bugReportPage;
     IssuePage issuePage;
-    SoftAssert softAssert = new SoftAssert();
+    ViewIssuePage viewIssuePage;
+
 
     //Tests
     @Test
-    public void cadastrarNovaIssueComSucessoInformandoSomenteCamposObrigatorios(){
+    public void registerNewIssueSucessfully(){
         //Objects instances
         loginFlows = new LoginFlows();
         mainPage = new MainPage();
@@ -47,13 +50,14 @@ public class ReportIssueTests extends TestBase {
         bugReportPage.clickInViewIssue();
 
         //Assertions
-        Assert.assertEquals(resumo, issuePage.retornaTextoBugSummary());
-        Assert.assertEquals(descricao, issuePage.retornaTextoBugDescription());
+        Assert.assertEquals(resumo, issuePage.returnBugSummary());
+        Assert.assertEquals(descricao, issuePage.returnBugDescription());
+        Assert.assertEquals("Automação", issuePage.returnCategory());
 
     }
 
     @Test
-    public void cadastrarNovaIssueSemSucessoSemInformarTodosCamposObrigatorios(){
+    public void checkSummaryFieldRequired(){
         //Objects instances
         loginFlows = new LoginFlows();
         mainPage = new MainPage();
@@ -81,5 +85,168 @@ public class ReportIssueTests extends TestBase {
         Assert.assertEquals(bugReportPage.alertSummaryText(), alertMessage);
     }
 
+
+    @Test
+    public void registerNewIssueUrgentPriority(){
+        //Objects instances
+        loginFlows = new LoginFlows();
+        mainPage = new MainPage();
+        bugReportPage = new BugReportPage();
+        issuePage = new IssuePage();
+
+        //Parameteres
+        String usuario = "administrator";
+        String senha = "adm";
+        String project = "Automação";
+        String categoria = "[All Projects] Automação";
+        String resumo = "High priority issue";
+        String descricao = "High-risk issue";
+        String priority = "high";
+
+        //Test
+        loginFlows.signIn(usuario, senha);
+        mainPage.clickReportIssue();
+        bugReportPage.selectProject(project);
+        bugReportPage.clickSelectProject();
+        bugReportPage.selectCategory(categoria);
+        bugReportPage.fillResume(resumo);
+        bugReportPage.fillDescription(descricao);
+        bugReportPage.selectPriority(priority);
+        bugReportPage.clickInSubmitReport();
+        bugReportPage.clickInViewIssue();
+
+        //Assertions
+        Assert.assertEquals(resumo, issuePage.returnBugSummary());
+        Assert.assertEquals(descricao, issuePage.returnBugDescription());
+        Assert.assertEquals(priority, issuePage.returnPriority());
+        Assert.assertEquals("Automação", issuePage.returnCategory());
+
+    }
+
+    @Test
+    public void registerNewIssueWithFileEvidence(){
+        //Objects instances
+        loginFlows = new LoginFlows();
+        mainPage = new MainPage();
+        bugReportPage = new BugReportPage();
+        issuePage = new IssuePage();
+
+        //Parameteres
+        String usuario = "administrator";
+        String senha = "adm";
+        String project = "Automação";
+        String categoria = "[All Projects] Automação";
+        String resumo = "Issue com arquivo upado";
+        String descricao = "Descrição arquivo upado";
+        String file = GlobalParameters.FILES_PATH + "error.png";
+
+        //Test
+        loginFlows.signIn(usuario, senha);
+        mainPage.clickReportIssue();
+        bugReportPage.selectProject(project);
+        bugReportPage.clickSelectProject();
+        bugReportPage.selectCategory(categoria);
+        bugReportPage.fillResume(resumo);
+        bugReportPage.fillDescription(descricao);
+        bugReportPage.sendUploadFile(file);
+        bugReportPage.clickInSubmitReport();
+        bugReportPage.clickInViewIssue();
+
+        //Assertions
+        Assert.assertEquals(resumo, issuePage.returnBugSummary());
+        Assert.assertEquals(descricao, issuePage.returnBugDescription());
+        Assert.assertEquals("Automação", issuePage.returnCategory());
+        Assert.assertTrue(issuePage.returnFileName().contains("error.png"));
+
+    }
+
+    @Test
+    public void uploadEvidenceLargerThanMaxSize(){
+        //Objects instances
+        loginFlows = new LoginFlows();
+        mainPage = new MainPage();
+        bugReportPage = new BugReportPage();
+        issuePage = new IssuePage();
+
+        //Parameteres
+        String usuario = "administrator";
+        String senha = "adm";
+        String project = "Automação";
+        String categoria = "[All Projects] Automação";
+        String resumo = "Issue com arquivo upado acima do tamanho maximo";
+        String descricao = "Descrição arquivo upado acima do tamanho maximo";
+        String file = GlobalParameters.FILES_PATH + "bigerror.png";
+
+        //Test
+        loginFlows.signIn(usuario, senha);
+        mainPage.clickReportIssue();
+        bugReportPage.selectProject(project);
+        bugReportPage.clickSelectProject();
+        bugReportPage.selectCategory(categoria);
+        bugReportPage.fillResume(resumo);
+        bugReportPage.fillDescription(descricao);
+        bugReportPage.sendUploadFile(file);
+
+        //Assert
+        Assert.assertTrue(bugReportPage.getTextAlert().contains("exceed the maximum allowed file size (2.00 MiB)"));
+    }
+
+    @Test
+    public void uploadEvidenceInExistingIssue(){
+        //Objects instances
+        loginFlows = new LoginFlows();
+        mainPage = new MainPage();
+        bugReportPage = new BugReportPage();
+        issuePage = new IssuePage();
+        viewIssuePage = new ViewIssuePage();
+
+        //Parameteres
+        String usuario = "administrator";
+        String senha = "adm";
+        String projectName = "Upar Evidencia";
+        String file = GlobalParameters.FILES_PATH + "error1.png";
+
+        //Test
+        loginFlows.signIn(usuario, senha);
+        mainPage.clickUnassignedIssues();
+        viewIssuePage.fillFilter(projectName);
+        viewIssuePage.clickEdit();
+        issuePage.clickUpdate();
+        bugReportPage.sendUploadFile(file);
+        bugReportPage.clickAddNote();
+
+        //Assert
+        Assert.assertTrue(issuePage.returnFileName().contains("error1.png"));
+
+    }
+
+    @Test
+    public void deleteAIssue(){
+        //Objects instances
+        loginFlows = new LoginFlows();
+        mainPage = new MainPage();
+        bugReportPage = new BugReportPage();
+        issuePage = new IssuePage();
+        viewIssuePage = new ViewIssuePage();
+
+        //Parameteres
+        String usuario = "administrator";
+        String senha = "adm";
+        String projectName = "Delete This Issue";
+        String file = GlobalParameters.FILES_PATH + "error1.png";
+
+        //Test
+        loginFlows.signIn(usuario, senha);
+        mainPage.clickUnassignedIssues();
+        viewIssuePage.fillFilter(projectName);
+        viewIssuePage.clickEdit();
+        issuePage.clickUpdate();
+        bugReportPage.clickDelete();
+        bugReportPage.clickDeleteIssues();
+
+        //Assert
+        Assert.assertTrue(issuePage.returnFileName().contains("error1.png"));
+
+    }
 
 }

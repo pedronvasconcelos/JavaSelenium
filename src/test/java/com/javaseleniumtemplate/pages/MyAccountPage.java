@@ -1,0 +1,41 @@
+package com.javaseleniumtemplate.pages;
+
+import com.javaseleniumtemplate.bases.PageBase;
+import org.openqa.selenium.By;
+
+public class MyAccountPage extends PageBase {
+    //Mapping
+    By apiTokensMenu = By.xpath("//a[@href='/api_tokens_page.php']");
+    By tokenNameField = By.id("token_name");
+    By apiTokensButton = By.xpath("//a[@href='api_tokens_page.php']");
+    By createApiTokenButton = By.xpath("//*[@id='account-create-api-token-form']//button");
+    By tokenText = By.xpath("//h2");
+
+
+    //Actions
+    public void accessApiTokens(){
+        click(apiTokensMenu);
+    }
+
+    public void fillTokenName(String token){
+        sendKeys(tokenNameField, token);
+    }
+
+    public void clickApiTokens(){
+        click(apiTokensButton);
+    }
+
+    public void clickCreateApiToken(){
+        click(createApiTokenButton);
+    }
+
+    public String returnTokenMessage(){
+        return getText(tokenText);
+    }
+
+    public String alertApiToken(){
+        return returnAlertRequired(tokenNameField);
+    }
+
+
+}

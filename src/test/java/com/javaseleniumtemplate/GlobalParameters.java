@@ -20,6 +20,7 @@ public class GlobalParameters {
     public static String DB_URL;
     public static String DB_USER;
     public static String DB_PASSWORD;
+    public static  String FILES_PATH;
 
     private Properties properties;
 
@@ -49,5 +50,7 @@ public class GlobalParameters {
         DB_DATABASE = properties.getProperty("db.database");
         DB_USER = properties.getProperty("db.user");
         DB_PASSWORD = properties.getProperty("db.password");
+        FILES_PATH = System.getProperty("user.dir") + properties.getProperty("files.path");
+
     }
 }

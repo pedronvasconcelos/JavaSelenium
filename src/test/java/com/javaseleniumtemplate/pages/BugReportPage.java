@@ -12,11 +12,16 @@ public class BugReportPage extends PageBase {
     By categoryComboBox = By.id("category_id");
     By summaryField = By.name("summary");
     By descriptionField = By.name("description");
-    By uploadFileField = By.xpath("//i[@class='fa fa-cloud-upload upload-icon ace-icon blue fa-3x']");
+    By uploadFileField = By.xpath("//div[@class='dropzone center dz-clickable']");
     By submitButton = By.xpath("//input[@type='submit']");
     By viewIssueButton = By.xpath("//*[contains(text(),'View Submitted')]");
     By selectProjectButton = By.xpath("//*[@class='btn btn-primary btn-white btn-round']");
     By selectProjectCombobox = By.id("select-project-id");
+    By priorityCombobox = By.id("priority");
+    By addNoteButton = By.xpath("//input[@value='Add Note']");
+    By deleteButton = By.xpath("//input[@value='Delete']");
+    By deleteIssuesButton = By.xpath("//input[@value='Delete Issues']");
+
 
     //Actions
     public void fillResume(String resumo){
@@ -49,5 +54,25 @@ public class BugReportPage extends PageBase {
 
     public void selectProject(String project){
         comboBoxSelectByVisibleText(selectProjectCombobox, project);
+    }
+
+    public void selectPriority(String priority){
+        comboBoxSelectByVisibleText(priorityCombobox, priority);
+    }
+
+    public void sendUploadFile(String file){
+        uploadFileJavaScript(uploadFileField, file);
+    }
+
+    public void clickAddNote(){
+        click(addNoteButton);
+    }
+
+    public void clickDelete(){
+        click(deleteButton);
+    }
+
+    public void clickDeleteIssues(){
+        click(deleteIssuesButton);
     }
 }
