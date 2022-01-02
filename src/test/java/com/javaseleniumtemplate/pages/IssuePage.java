@@ -18,8 +18,7 @@ public class IssuePage extends PageBase {
 
     public String returnBugSummary(){
       String fullText =  getText(bugSummary);
-      String summaryText = fullText.substring(9);
-      return summaryText;
+      return fullText.substring(9);
     }
 
     public String returnFileName(){
