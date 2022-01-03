@@ -1,6 +1,7 @@
 package com.javaseleniumtemplate.tests;
 
 import com.javaseleniumtemplate.bases.TestBase;
+import com.javaseleniumtemplate.dbsteps.UsuariosDBSteps;
 import com.javaseleniumtemplate.flows.LoginFlows;
 import com.javaseleniumtemplate.pages.LoginPage;
 import com.javaseleniumtemplate.pages.MainPage;
@@ -17,6 +18,38 @@ public class MyAccountTests extends TestBase {
     MyAccountPage myAccountPage;
 
     //Tests
+
+    @Test
+    public void updateRealname(){
+
+        //region Objects instances
+        loginPage = new LoginPage();
+        mainPage = new MainPage();
+        loginFlows = new LoginFlows();
+        myAccountPage = new MyAccountPage();
+        //endregion
+
+        //Parameters
+        String usuario = "administrator";
+        String senha = "adm";
+        String newName = "New Name";
+        String successMessage = "Real name successfully updated";
+
+
+        //region Test
+        loginFlows.signIn(usuario, senha);
+        mainPage.clickUserDropdown();
+        mainPage.clickMyAccount();
+        myAccountPage.fillRealName("New Name");
+        myAccountPage.clickUpdateUser();
+
+        //Assertions
+        Assert.assertEquals(successMessage, myAccountPage.returnSucessMessage());
+        Assert.assertEquals(newName, UsuariosDBSteps.retornaSenhaDoUsuarioDB(usuario));
+    }
+
+
+
     @Test
     public void createApiTokenSuccessfully(){
 

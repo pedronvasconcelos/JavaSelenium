@@ -42,7 +42,7 @@ public class DBUtils {
                         arrayList.add(rs.getString(i++));
                     }
                 }
-                ExtentReportUtils.addTestInfo(3, "Resultado: " + arrayList.toString());
+                ExtentReportUtils.addTestInfo(3, "Resultado: " + arrayList);
             }
         } catch (Exception e) {
             e.printStackTrace();
