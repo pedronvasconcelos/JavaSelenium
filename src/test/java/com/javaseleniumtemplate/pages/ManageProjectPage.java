@@ -13,12 +13,13 @@ public class ManageProjectPage extends PageBase{
     By sucessText = By.xpath("//p[@class='bold bigger-110']");
     By categoryAddField = By.xpath("//*[@class='input-sm']");
     By addCategoryBtn = By.xpath("//input[@value='Add Category']");
-    By proccedButton = By.xpath("//a[@class='btn btn-primary btn-white btn-round ']");
+    By proccedButton = By.xpath("//a[@class='btn btn-primary btn-white btn-round']");
     By viewStatusCombobox = By.id("project-view-state");
     By createNewSubprojectButton = By.xpath("//button[contains(text(),'Create New Subproject')]");
     By versionField = By.name("version");
     By addVersionButton = By.name("add_version");
-
+    By deleteButton = By.xpath("//input[@class='btn btn-primary btn-sm btn-white btn-round']");
+    By updateButton =  By.xpath("//input[@class='btn btn-primary btn-white btn-round']");
 
 
 
@@ -74,6 +75,10 @@ public class ManageProjectPage extends PageBase{
         click(projectLink);
     }
 
+    public boolean returnProjectExists(String project){
+        return returnIfElementExists(By.linkText(project));
+    }
+
     public void clickNewSubProject(){
         click(createNewSubprojectButton);
     }
@@ -84,6 +89,22 @@ public class ManageProjectPage extends PageBase{
 
     public void clickAddVersion(){
         click(addVersionButton);
+    }
+
+    public String getDescriptionFieldText(){
+        return getValue(descriptionField);
+    }
+
+    public String getProjectNameFieldText(){
+        return getValue(projectNameField);
+    }
+
+    public void clickDelete(){
+        click(deleteButton);
+    }
+
+    public void clickUpdate(){
+        click(updateButton);
     }
 
 }

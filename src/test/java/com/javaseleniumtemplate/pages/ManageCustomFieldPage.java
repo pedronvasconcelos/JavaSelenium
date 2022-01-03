@@ -7,10 +7,11 @@ public class ManageCustomFieldPage extends PageBase{
     //Mapping ManageProjects
     By nameField = By.name("name");
     By newCustomButton = By.xpath("//input[@class='btn btn-primary btn-sm btn-white btn-round']");
-    By sucessText = By.xpath("//*[@class='alert alert-success center']/p");
+    By successText = By.xpath("//*[@class='alert alert-success center']/p");
     By errorText = By.xpath("//div[@class='alert alert-danger']/p[@class='bold']");
     By typeCombobox = By.xpath("//select[@id='custom-field-type']");
     By updateButton = By.xpath("//input[@class='btn btn-primary btn-white btn-round']");
+    By deleteButton = By.xpath("//input[@class='btn btn-primary btn-sm btn-white btn-round']");
 
 
 
@@ -24,8 +25,8 @@ public class ManageCustomFieldPage extends PageBase{
         click(newCustomButton);
     }
 
-    public String returnSucessText(){
-        return getText(sucessText);
+    public String returnSuccessText(){
+        return getText(successText);
     }
 
     public void clickCustomField(String customField){
@@ -39,6 +40,10 @@ public class ManageCustomFieldPage extends PageBase{
 
     public void clickUpdate(){
         click(updateButton);
+    }
+
+    public void clickDelete(){
+        click(deleteButton);
     }
 
     public String returnErrorText(){

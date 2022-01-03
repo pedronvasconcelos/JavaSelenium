@@ -297,7 +297,6 @@ public class PageBase {
     public String returnAlertRequired(By locator){
         JavascriptExecutor js = (JavascriptExecutor)driver;
         WebElement field = driver.findElement(locator);
-        String message = (String)js.executeScript("return arguments[0].validationMessage;", field);
-        return message;
+        return (String)js.executeScript("return arguments[0].validationMessage;", field);
     }
 }

@@ -94,7 +94,7 @@ public class LoginTests extends TestBase {
         //Test
         loginPage.fillUser(usuario);
         loginPage.clickLogin();
-        loginPage.clickLogin();loginPage.returnErrorMessage();
+        loginPage.clickLogin();
 
         //Assert
         Assert.assertEquals(mensagemErroEsperada, loginPage.returnErrorMessage());
@@ -197,7 +197,7 @@ public class LoginTests extends TestBase {
     }
 
     @Test
-    public void validateRestrictionsUserDeveloperr(){
+    public void validateRestrictionsUserDeveloper(){
 
         //Objects instances
         loginPage = new LoginPage();
@@ -219,6 +219,62 @@ public class LoginTests extends TestBase {
         softAssert.assertFalse(mainPage.returnIfManageExists());
         softAssert.assertTrue(mainPage.returnIfReportExists());
         softAssert.assertAll();
+    }
+
+    @Test
+    public void sendRecoveryPasswordEmail(){
+
+        //Objects instances
+        loginPage = new LoginPage();
+        mainPage = new MainPage();
+        loginFlows = new LoginFlows();
+
+
+        //Parameters
+        String usuario = "recoverypw";
+        String email = "recovery@user.com.br";
+        String successMessage = "Password Message Sent";
+
+
+        //Test
+        loginPage.fillUser(usuario);
+        loginPage.clickLogin();
+        loginPage.clickLostPassword();
+        loginPage.fillEmail(email);
+        loginPage.clickLogin();
+
+
+        //Assert
+        Assert.assertTrue(loginPage.returnSuccessMessage().contains(successMessage));
+
+    }
+
+    @Test
+    public void recoveryPasswordWithWrongEmail(){
+
+        //Objects instances
+        loginPage = new LoginPage();
+        mainPage = new MainPage();
+        loginFlows = new LoginFlows();
+
+
+        //Parameters
+        String usuario = "recoverypw";
+        String email = "wrong@user.com.br";
+        String errorMessage = "APPLICATION ERROR #1903";
+
+
+        //Test
+        loginPage.fillUser(usuario);
+        loginPage.clickLogin();
+        loginPage.clickLostPassword();
+        loginPage.fillEmail(email);
+        loginPage.clickLogin();
+
+
+        //Assert
+        Assert.assertTrue(loginPage.returnErrorMessage().contains(errorMessage));
+
     }
 
     }

@@ -56,20 +56,20 @@ public class DBUtils {
         return arrayList;
     }
 
-    public static void executeQuery(String query){
+    public static void executeUpdateQuery(String query) {
         Connection connection = null;
 
         try {
-            Class.forName("UTILIZAR O DRIVER DO BANCO DE DADOS DA APLICAÇÃO");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             Statement stmt = null;
-            connection = DriverManager.getConnection("utilizar os parãmetros globais para montar a string de conexão de acordo com db utilizado");
+            connection = DriverManager.getConnection(getStringConnection(), GlobalParameters.DB_USER, GlobalParameters.DB_PASSWORD);
 
             stmt = connection.createStatement();
-            stmt.executeQuery(query);
+            stmt.executeUpdate(query);
 
         } catch (Exception e) {
             e.printStackTrace();
-        } finally{
+        } finally {
             try {
                 connection.close();
             } catch (SQLException e) {
@@ -78,5 +78,16 @@ public class DBUtils {
         }
     }
 
+    public static String retornarResultadoQuery(String arquivoSql){
 
+        String queriesPath = System.getProperty("user.dir") + "/src/test/java/com/javaseleniumtemplate/queries/";
+        String path = queriesPath + arquivoSql;
+        String query = Utils.getFileContent(path);
+        return DBUtils.getQueryResult(query).toString();
+
+    }
+
+    public void insertQuery(){
+
+    }
 }

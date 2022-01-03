@@ -7,8 +7,11 @@ public class LoginPage extends PageBase {
     //Mapping
     By usernameField = By.name("username");
     By passwordField = By.name("password");
+    By emailField = By.name("email");
     By loginButton = By.xpath("//input[@type='submit']");
-    By loginErroTextArea = By.xpath("//*[@class='alert alert-danger']/p");
+    By loginErroTextArea = By.xpath("//div[@class='alert alert-danger']/p");
+    By successTextArea = By.xpath("//div[@class='alert alert-success center']/p[2]");
+    By lostPasswordLink = By.xpath("//fieldset/a");
 
     //Actions
     public void fillUser(String usuario){
@@ -19,12 +22,20 @@ public class LoginPage extends PageBase {
         sendKeys(passwordField, senha);
     }
 
+    public void fillEmail(String email){
+        sendKeys(emailField, email);
+    }
+
     public void clickLogin(){
         click(loginButton);
     }
 
     public String returnErrorMessage(){
         return getText(loginErroTextArea);
+    }
+
+    public String returnSuccessMessage(){
+        return getText(successTextArea);
     }
 
     public void fillUserJs(String usuario){
@@ -41,5 +52,9 @@ public class LoginPage extends PageBase {
 
     public String getCurrentUrl(){
         return getURL();
+    }
+
+    public void clickLostPassword(){
+        click(lostPasswordLink);
     }
 }

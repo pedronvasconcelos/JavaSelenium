@@ -37,7 +37,7 @@ public class ManageFieldTests extends TestBase {
         manageCustomFieldPage.clickNewCustom();
 
         //Assert
-        Assert.assertEquals(manageCustomFieldPage.returnSucessText(), sucessMessage);
+        Assert.assertEquals(manageCustomFieldPage.returnSuccessText(), sucessMessage);
     }
 
     @Test
@@ -65,7 +65,33 @@ public class ManageFieldTests extends TestBase {
         manageCustomFieldPage.clickUpdate();
 
         //Assert
-        Assert.assertEquals(manageCustomFieldPage.returnSucessText(), sucessMessage);
+        Assert.assertEquals(manageCustomFieldPage.returnSuccessText(), sucessMessage);
+    }
+    @Test
+    public void deleteCustomField(){
+        //Instances
+        loginFlows = new LoginFlows();
+        mainPage = new MainPage();
+        managePage = new ManagePage();
+        manageCustomFieldPage = new ManageCustomFieldPage();
+
+        //Parameters
+        String user = "administrator";
+        String password = "adm";
+        String fieldName = "delete this field";
+        String sucessMessage = "Operation successful.";
+
+
+        //Test
+        loginFlows.signIn(user, password);
+        mainPage.clickManage();
+        managePage.clickManageCustomField();
+        manageCustomFieldPage.clickCustomField(fieldName);
+        manageCustomFieldPage.clickDelete();
+        manageCustomFieldPage.clickUpdate();
+
+        //Assert
+        Assert.assertEquals(manageCustomFieldPage.returnSuccessText(), sucessMessage);
     }
 
     @Test

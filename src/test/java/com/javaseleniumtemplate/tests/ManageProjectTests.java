@@ -2,6 +2,7 @@ package com.javaseleniumtemplate.tests;
 
 
 import com.javaseleniumtemplate.bases.TestBase;
+import com.javaseleniumtemplate.dbsteps.ProjetosDbSteps;
 import com.javaseleniumtemplate.flows.LoginFlows;
 import com.javaseleniumtemplate.pages.*;
 import org.testng.Assert;
@@ -34,7 +35,7 @@ public class ManageProjectTests extends TestBase {
         managePage.clickManageProjects();
         manageProjectPage.clickCreateNewProject();
         manageProjectPage.fillProjectName("Test Auto");
-        manageProjectPage.fillDescription("Test descrption");
+        manageProjectPage.fillDescription("Test description");
         manageProjectPage.clickAddProject();
 
         //Assert
@@ -42,6 +43,89 @@ public class ManageProjectTests extends TestBase {
 
     }
 
+    @Test
+    public void createNewProjectWithQuery(){
+        //Instances
+        loginFlows = new LoginFlows();
+        mainPage = new MainPage();
+        managePage = new ManagePage();
+        manageProjectPage = new ManageProjectPage();
+
+        //Parameteres
+        String usuario = "administrator";
+        String senha = "adm";
+        String nomeProjeto = "SQL Project";
+
+        //Query
+        ProjetosDbSteps.createProject(nomeProjeto);
+
+        //Test
+        loginFlows.signIn(usuario, senha);
+        mainPage.clickManage();
+        managePage.clickManageProjects();
+        manageProjectPage.clickProjectLink(nomeProjeto);
+
+        //Assertion
+        Assert.assertEquals(nomeProjeto, manageProjectPage.getProjectNameFieldText());
+        Assert.assertEquals("Criado por Query", manageProjectPage.getDescriptionFieldText());
+
+    }
+
+    @Test
+    public void deleteProject(){
+        //Instances
+        loginFlows = new LoginFlows();
+        mainPage = new MainPage();
+        managePage = new ManagePage();
+        manageProjectPage = new ManageProjectPage();
+
+        //Parameteres
+        String usuario = "administrator";
+        String senha = "adm";
+        String nomeProjeto = "delete";
+
+        //Query
+        ProjetosDbSteps.createProject(nomeProjeto);
+
+        //Test
+        loginFlows.signIn(usuario, senha);
+        mainPage.clickManage();
+        managePage.clickManageProjects();
+        manageProjectPage.clickProjectLink(nomeProjeto);
+        manageProjectPage.clickDelete();
+        manageProjectPage.clickUpdate();
+
+        //Assert
+        Assert.assertFalse(manageProjectPage.returnProjectExists(nomeProjeto));
+    }
+
+    @Test
+    public void updateProjectName(){
+        //Instances
+        loginFlows = new LoginFlows();
+        mainPage = new MainPage();
+        managePage = new ManagePage();
+        manageProjectPage = new ManageProjectPage();
+
+        //Parameteres
+        String usuario = "administrator";
+        String senha = "adm";
+        String nomeProjeto = "delete";
+
+        //Query
+        ProjetosDbSteps.createProject(nomeProjeto);
+
+        //Test
+        loginFlows.signIn(usuario, senha);
+        mainPage.clickManage();
+        managePage.clickManageProjects();
+        manageProjectPage.clickProjectLink(nomeProjeto);
+        manageProjectPage.clickDelete();
+        manageProjectPage.clickUpdate();
+
+        //Assert
+        Assert.assertFalse(manageProjectPage.returnProjectExists(nomeProjeto));
+    }
     @Test
     public void createNewPrivateProject(){
         //Instances
