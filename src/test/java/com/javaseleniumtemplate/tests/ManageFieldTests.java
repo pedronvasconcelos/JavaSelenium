@@ -68,4 +68,27 @@ public class ManageFieldTests extends TestBase {
         Assert.assertEquals(manageCustomFieldPage.returnSucessText(), sucessMessage);
     }
 
+    @Test
+    public void validateRequiredNameCustomField(){
+        //Instances
+        loginFlows = new LoginFlows();
+        mainPage = new MainPage();
+        managePage = new ManagePage();
+        manageCustomFieldPage = new ManageCustomFieldPage();
+
+        //Parameters
+        String user = "administrator";
+        String password = "adm";
+        String errorMessage = "APPLICATION ERROR #11";
+
+        //Test
+        loginFlows.signIn(user, password);
+        mainPage.clickManage();
+        managePage.clickManageCustomField();
+        manageCustomFieldPage.clickNewCustom();
+
+        //Assert
+        Assert.assertEquals(manageCustomFieldPage.returnErrorText(), errorMessage);
+    }
+
 }

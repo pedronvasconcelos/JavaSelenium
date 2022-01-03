@@ -17,6 +17,7 @@ public class BugReportPage extends PageBase {
     By viewIssueButton = By.xpath("//*[contains(text(),'View Submitted')]");
     By selectProjectButton = By.xpath("//*[@class='btn btn-primary btn-white btn-round']");
     By selectProjectCombobox = By.id("select-project-id");
+    By severityCombobox = By.id("severity");
     By priorityCombobox = By.id("priority");
     By addNoteButton = By.xpath("//input[@value='Add Note']");
     By deleteButton = By.xpath("//input[@value='Delete']");
@@ -58,6 +59,10 @@ public class BugReportPage extends PageBase {
 
     public void selectPriority(String priority){
         comboBoxSelectByVisibleText(priorityCombobox, priority);
+    }
+
+    public void selectSeverity(String severity){
+        comboBoxSelectByVisibleText(severityCombobox, severity);
     }
 
     public void sendUploadFile(String file){

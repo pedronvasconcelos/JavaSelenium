@@ -9,6 +9,7 @@ public class ManageTagPage extends PageBase{
     By descriptionField = By.id("tag-description");
     By createButton = By.name("config_set");
     By updateTagButton = By.xpath("//input[@value='Update Tag']");
+    By deleteTagButton = By.xpath("//input[@value='Delete Tag']");
     By nameTagText = By.xpath("//tr[2]/td[2]");
     By descriptionTagText = By.xpath("//tr[6]/td[2]");
 
@@ -48,6 +49,14 @@ public class ManageTagPage extends PageBase{
 
     public String returnDescriptionTag(){
         return getText(descriptionTagText);
+    }
+
+    public void clickDeleteTag(){
+        click(deleteTagButton);
+    }
+
+    public boolean returnIfTagExists(String tag ){
+        return returnIfElementExists(By.linkText(tag));
     }
 
 }

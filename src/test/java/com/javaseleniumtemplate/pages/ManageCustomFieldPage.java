@@ -8,6 +8,7 @@ public class ManageCustomFieldPage extends PageBase{
     By nameField = By.name("name");
     By newCustomButton = By.xpath("//input[@class='btn btn-primary btn-sm btn-white btn-round']");
     By sucessText = By.xpath("//*[@class='alert alert-success center']/p");
+    By errorText = By.xpath("//div[@class='alert alert-danger']/p[@class='bold']");
     By typeCombobox = By.xpath("//select[@id='custom-field-type']");
     By updateButton = By.xpath("//input[@class='btn btn-primary btn-white btn-round']");
 
@@ -40,4 +41,7 @@ public class ManageCustomFieldPage extends PageBase{
         click(updateButton);
     }
 
+    public String returnErrorText(){
+        return getText(errorText);
+    }
 }

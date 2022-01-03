@@ -73,4 +73,33 @@ public class ManageTagTests extends TestBase {
         Assert.assertEquals(description, manageTagPage.returnDescriptionTag());
     }
 
+
+    @Test
+    public void deleteTag(){
+
+        //Instances
+        loginFlows = new LoginFlows();
+        mainPage = new MainPage();
+        managePage = new ManagePage();
+        manageTagPage = new ManageTagPage();
+        manageProjectPage = new ManageProjectPage();
+
+        //Parameters
+        String user = "administrator";
+        String password = "adm";
+        String tagName = "delete";
+
+        //Test
+        loginFlows.signIn(user, password);
+        mainPage.clickManage();
+        managePage.clickManageTags();
+        manageTagPage.clickTag(tagName);
+        manageTagPage.clickDeleteTag();
+        manageTagPage.clickDeleteTag();
+
+
+        //Assert
+        Assert.assertFalse(manageTagPage.returnIfTagExists(tagName));
+    }
+
 }

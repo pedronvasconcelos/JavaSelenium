@@ -9,8 +9,8 @@ public class IssuePage extends PageBase {
     By bugSummary = By.xpath("//*[@class='bug-summary']");
     By bugDescription = By.xpath("//*[@class='bug-description']");
     By fileNameText = By.xpath("//td[contains(text(),'File Added')]");
-    By createdTag = By.xpath("//a[contains(text(),'replace')]");
     By priorityText = By.xpath("//td[@class='bug-priority']");
+    By severityText = By.xpath("//td[@class='bug-severity']");
     By categoryText = By.xpath("//td[@class='bug-category']");
     By updateButton = By.xpath("//input[@value='Update Information']");
 
@@ -36,6 +36,11 @@ public class IssuePage extends PageBase {
     public String returnCategory(){
         return getText(categoryText);
     }
+
+    public String returnSeverity(){
+        return getText(severityText);
+    }
+
 
     public void clickUpdate(){
         click(updateButton);

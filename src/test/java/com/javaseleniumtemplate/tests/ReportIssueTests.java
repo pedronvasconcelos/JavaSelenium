@@ -7,9 +7,11 @@ import com.javaseleniumtemplate.pages.BugReportPage;
 import com.javaseleniumtemplate.pages.MainPage;
 import com.javaseleniumtemplate.pages.IssuePage;
 import com.javaseleniumtemplate.pages.ViewIssuePage;
+import com.javaseleniumtemplate.utils.DataDriven;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+
 
 
 public class ReportIssueTests extends TestBase {
@@ -19,8 +21,53 @@ public class ReportIssueTests extends TestBase {
     BugReportPage bugReportPage;
     IssuePage issuePage;
     ViewIssuePage viewIssuePage;
+    SoftAssert softAssert;
 
 
+
+
+
+    @Test(dataProvider="dataIssuesCSVProvider", dataProviderClass = DataDriven.class)
+    public void registerNewIssueDDT(String[] dataDriven)  {
+        //Objects instances
+        loginFlows = new LoginFlows();
+        mainPage = new MainPage();
+        bugReportPage = new BugReportPage();
+        issuePage = new IssuePage();
+        softAssert = new SoftAssert();
+
+        //Parameteres
+        String resumo = dataDriven[0];
+        String descricao = dataDriven[1];
+        String severity = dataDriven[2];
+        String priority = dataDriven[3];
+        String usuario = "administrator";
+        String senha = "adm";
+        String project = "Automação";
+        String categoria = "[All Projects] Automação";
+
+        loginFlows.signIn(usuario, senha);
+        mainPage.clickReportIssue();
+        bugReportPage.selectProject(project);
+        bugReportPage.clickSelectProject();
+        bugReportPage.selectCategory(categoria);
+        bugReportPage.fillResume(resumo);
+        bugReportPage.fillDescription(descricao);
+        bugReportPage.selectPriority(priority);
+        bugReportPage.selectSeverity(severity);
+        bugReportPage.clickInSubmitReport();
+        bugReportPage.clickInViewIssue();
+
+        //Assertions
+        softAssert.assertEquals(resumo, issuePage.returnBugSummary());
+        softAssert.assertEquals(descricao, issuePage.returnBugDescription());
+        softAssert.assertEquals("Automação", issuePage.returnCategory());
+        softAssert.assertEquals(priority, issuePage.returnPriority());
+        softAssert.assertEquals(severity, issuePage.returnSeverity());
+        softAssert.assertAll();
+
+
+    }
     //Tests
     @Test
     public void registerNewIssueSucessfully(){
@@ -55,6 +102,8 @@ public class ReportIssueTests extends TestBase {
         Assert.assertEquals("Automação", issuePage.returnCategory());
 
     }
+
+
 
     @Test
     public void checkSummaryFieldRequired(){
@@ -233,7 +282,6 @@ public class ReportIssueTests extends TestBase {
         String usuario = "administrator";
         String senha = "adm";
         String projectName = "Delete This Issue";
-        String file = GlobalParameters.FILES_PATH + "error1.png";
 
         //Test
         loginFlows.signIn(usuario, senha);

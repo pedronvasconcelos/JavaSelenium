@@ -116,6 +116,108 @@ public class ManageUserTests extends TestBase {
     }
 
     @Test
+    public void createNewViewerUser(){
+        //Instances
+        loginFlows = new LoginFlows();
+        mainPage = new MainPage();
+        managePage = new ManagePage();
+        manageUsersPage = new ManageUsersPage();
+
+
+        //Parameters
+        String user = "administrator";
+        String password = "adm";
+        String username = "viewerUser";
+        String realname = "viewer User";
+        String email = "viewer@user.com.br";
+        String accessLevel = "viewer";
+        String successMessage = "Created user " + username + " with an access level of viewer";
+
+        //Test
+        loginFlows.signIn(user, password);
+        mainPage.clickManage();
+        managePage.clickManageUsers();
+        manageUsersPage.clickCreateNewAcc();
+        manageUsersPage.fillUsernameField(username);
+        manageUsersPage.fillRealnameField(realname);
+        manageUsersPage.fillEmailField(email);
+        manageUsersPage.selectAccessLevel(accessLevel);
+        manageUsersPage.clickCreateUser();
+
+        //Assert
+        Assert.assertEquals(manageUsersPage.getSucessText(), successMessage);
+
+    }
+
+    @Test
+    public void createNewAdministratorUser(){
+        //Instances
+        loginFlows = new LoginFlows();
+        mainPage = new MainPage();
+        managePage = new ManagePage();
+        manageUsersPage = new ManageUsersPage();
+
+
+        //Parameters
+        String user = "administrator";
+        String password = "adm";
+        String username = "admUser";
+        String realname = "Admin User";
+        String email = "admini@user.com.br";
+        String accessLevel = "administrator";
+        String successMessage = "Created user " + username + " with an access level of administrator";
+
+        //Test
+        loginFlows.signIn(user, password);
+        mainPage.clickManage();
+        managePage.clickManageUsers();
+        manageUsersPage.clickCreateNewAcc();
+        manageUsersPage.fillUsernameField(username);
+        manageUsersPage.fillRealnameField(realname);
+        manageUsersPage.fillEmailField(email);
+        manageUsersPage.selectAccessLevel(accessLevel);
+        manageUsersPage.clickCreateUser();
+
+        //Assert
+        Assert.assertEquals(manageUsersPage.getSucessText(), successMessage);
+
+    }
+
+    @Test
+    public void createNewUpdaterUser(){
+        //Instances
+        loginFlows = new LoginFlows();
+        mainPage = new MainPage();
+        managePage = new ManagePage();
+        manageUsersPage = new ManageUsersPage();
+
+
+        //Parameters
+        String user = "administrator";
+        String password = "adm";
+        String username = "updaterUser1";
+        String realname = "Updater User";
+        String email = "updater@user.com";
+        String accessLevel = "updater";
+        String successMessage = "Created user " + username + " with an access level of updater";
+
+        //Test
+        loginFlows.signIn(user, password);
+        mainPage.clickManage();
+        managePage.clickManageUsers();
+        manageUsersPage.clickCreateNewAcc();
+        manageUsersPage.fillUsernameField(username);
+        manageUsersPage.fillRealnameField(realname);
+        manageUsersPage.fillEmailField(email);
+        manageUsersPage.selectAccessLevel(accessLevel);
+        manageUsersPage.clickCreateUser();
+
+        //Assert
+        Assert.assertEquals(manageUsersPage.getSucessText(), successMessage);
+
+    }
+
+    @Test
     public void deleteUser(){
         //Instances
         loginFlows = new LoginFlows();
