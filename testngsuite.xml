@@ -3,7 +3,13 @@
     <test name="TestNgMavenTest">
         <classes>
             <class name="com.javaseleniumtemplate.tests.LoginTests"/>
-            <!-- <class name="com.javaseleniumtemplate.tests.ReportIssueTests"/>-->
+            <class name="com.javaseleniumtemplate.tests.ReportIssueTests"/>
+            <class name="com.javaseleniumtemplate.tests.MyAccountTests"/>
+            <class name="com.javaseleniumtemplate.tests.ManageUserTests"/>
+            <class name="com.javaseleniumtemplate.tests.ManageTagTests"/>
+            <class name="com.javaseleniumtemplate.tests.ManageProjectTests"/>
+            <class name="com.javaseleniumtemplate.tests.ManageProfilesTests"/>
+            <class name="com.javaseleniumtemplate.tests.ManageFieldTests"/>
         </classes>
     </test>
 </suite>

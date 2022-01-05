@@ -6,14 +6,9 @@ pipeline {
                 git branch: 'master', url:'https://github.com/pedronvasconcelos/desafioSelenium.git'
             }
         }
-        stage ('Build') {
+        stage ('Builds + Tests') {
             steps{
-               bat 'mvn clean package -DskipTests=true'
-            }
-       }
-       stage ('Tests') {
-            steps{
-               bat 'mvn test'
+               bat 'mvn clean test'
             }
        }
    }
