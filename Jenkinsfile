@@ -3,7 +3,7 @@ pipeline {
    stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'master', url:'https://github.com/gpd38/desafioBase2AutomacaoSeleniumWebDriverJava.git'            
+                git branch: 'master', url:'https://github.com/pedronvasconcelos/desafioSelenium.git'
             }
         }
         stage ('Build') {
