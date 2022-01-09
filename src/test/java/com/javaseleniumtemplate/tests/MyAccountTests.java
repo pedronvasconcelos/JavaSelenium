@@ -45,7 +45,7 @@ public class MyAccountTests extends TestBase {
 
         //Assertions
         Assert.assertEquals(successMessage, myAccountPage.returnSucessMessage());
-        Assert.assertEquals(newName, UsuariosDBSteps.retornaSenhaDoUsuarioDB(usuario));
+        Assert.assertEquals(newName, UsuariosDBSteps.returnUserName(usuario));
     }
 
 

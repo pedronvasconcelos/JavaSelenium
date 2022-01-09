@@ -29,7 +29,7 @@ public class ManageProjectPage extends PageBase{
     }
 
     public void fillProjectName(String projectName){
-        sendKeys(projectNameField, projectName);
+        clearAndSendKeys(projectNameField, projectName);
     }
 
     public void selectViewStatus(String status){
@@ -59,6 +59,11 @@ public class ManageProjectPage extends PageBase{
     public String returnCreatedCategory(String category){
         By categoryName = By.xpath("//td[text()='" + category + "']");
         return getText(categoryName);
+    }
+
+    public String returnCreatedProject(String project){
+        By projectName = By.xpath("//td/a[text()='" + project + "']");
+        return getText(projectName);
     }
 
     public void clickProceed(){

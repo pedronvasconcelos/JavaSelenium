@@ -50,7 +50,7 @@ public class Browsers {
     public static WebDriver getLocalChromeHeadless(){
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("download.default_directory", downloadPath);
-        ///chromeOptions.addArguments("--headless");
+        chromeOptions.addArguments("--headless");
 
         return new ChromeDriver(chromeOptions);
     }

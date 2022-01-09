@@ -7,6 +7,7 @@ public class ViewIssuePage extends PageBase {
     //Mapping
     By filterText = By.id("filter-search-txt");
     By editButton = By.xpath("//i[@title='Edit']");
+    By filterButton = By.xpath("//input[@name='filter_submit']");
     //Actions
 
     public void fillFilter(String filter){
@@ -17,5 +18,7 @@ public class ViewIssuePage extends PageBase {
         click(editButton);
     }
 
-
+    public void clickFilter(){
+        click(filterButton);
+    }
 }

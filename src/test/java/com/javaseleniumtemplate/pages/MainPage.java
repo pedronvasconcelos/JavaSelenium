@@ -45,6 +45,7 @@ public class MainPage extends PageBase {
     public boolean returnIfReportExists(){
         return returnIfElementExists(reportIssueLink);
     }
+
     public boolean returnIfManageExists(){
         return returnIfElementExists(manageLink);
     }

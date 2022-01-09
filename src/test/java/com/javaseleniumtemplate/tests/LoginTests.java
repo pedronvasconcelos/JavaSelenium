@@ -207,7 +207,7 @@ public class LoginTests extends TestBase {
 
 
         //Parameters
-        String usuario = "desenvolvedor";
+        String usuario = "developer";
         String senha = "adm";
 
 
@@ -221,33 +221,6 @@ public class LoginTests extends TestBase {
         softAssert.assertAll();
     }
 
-    @Test
-    public void sendRecoveryPasswordEmail(){
-
-        //Objects instances
-        loginPage = new LoginPage();
-        mainPage = new MainPage();
-        loginFlows = new LoginFlows();
-
-
-        //Parameters
-        String usuario = "recoverypw";
-        String email = "recovery@user.com.br";
-        String successMessage = "Password Message Sent";
-
-
-        //Test
-        loginPage.fillUser(usuario);
-        loginPage.clickLogin();
-        loginPage.clickLostPassword();
-        loginPage.fillEmail(email);
-        loginPage.clickLogin();
-
-
-        //Assert
-        Assert.assertTrue(loginPage.returnSuccessMessage().contains(successMessage));
-
-    }
 
     @Test
     public void recoveryPasswordWithWrongEmail(){

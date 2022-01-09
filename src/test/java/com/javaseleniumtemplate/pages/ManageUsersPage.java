@@ -34,7 +34,7 @@ public class ManageUsersPage extends PageBase{
     }
 
     public void fillEmailField(String email){
-        sendKeys(emailField, email);
+        clearAndSendKeys(emailField, email);
     }
 
     public void clickCreateUser(){

@@ -237,7 +237,7 @@ public class ReportIssueTests extends TestBase {
         bugReportPage.sendUploadFile(file);
 
         //Assert
-        Assert.assertTrue(bugReportPage.getTextAlert().contains("exceed the maximum allowed file size (2.00 MiB)"));
+        Assert.assertTrue(bugReportPage.getTextAlert().contains("exceed the maximum allowed file size"));
     }
 
     @Test
@@ -253,7 +253,7 @@ public class ReportIssueTests extends TestBase {
         String usuario = "administrator";
         String senha = "adm";
         String projectName = "Upar Evidencia";
-        String file = GlobalParameters.FILES_PATH + "error1.png";
+        String file = GlobalParameters.FILES_PATH + "error.png";
 
         //Test
         loginFlows.signIn(usuario, senha);
@@ -265,7 +265,7 @@ public class ReportIssueTests extends TestBase {
         bugReportPage.clickAddNote();
 
         //Assert
-        Assert.assertTrue(issuePage.returnFileName().contains("error1.png"));
+        Assert.assertTrue(issuePage.returnFileName().contains("error.png"));
 
     }
 
@@ -287,13 +287,14 @@ public class ReportIssueTests extends TestBase {
         loginFlows.signIn(usuario, senha);
         mainPage.clickUnassignedIssues();
         viewIssuePage.fillFilter(projectName);
+        viewIssuePage.clickFilter();
         viewIssuePage.clickEdit();
         issuePage.clickUpdate();
         bugReportPage.clickDelete();
         bugReportPage.clickDeleteIssues();
 
         //Assert
-        Assert.assertTrue(issuePage.returnFileName().contains("error1.png"));
+        Assert.assertFalse(issuePage.returnIfIssueExists(projectName));
 
     }
 

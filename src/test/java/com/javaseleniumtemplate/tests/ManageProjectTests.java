@@ -85,7 +85,6 @@ public class ManageProjectTests extends TestBase {
         String nomeProjeto = "delete";
 
         //Query
-        ProjetosDbSteps.createProject(nomeProjeto);
 
         //Test
         loginFlows.signIn(usuario, senha);
@@ -110,21 +109,20 @@ public class ManageProjectTests extends TestBase {
         //Parameteres
         String usuario = "administrator";
         String senha = "adm";
-        String nomeProjeto = "delete";
+        String projectName = "updateThisProject";
+        String newName = "newName";
 
-        //Query
-        ProjetosDbSteps.createProject(nomeProjeto);
 
         //Test
         loginFlows.signIn(usuario, senha);
         mainPage.clickManage();
         managePage.clickManageProjects();
-        manageProjectPage.clickProjectLink(nomeProjeto);
-        manageProjectPage.clickDelete();
+        manageProjectPage.clickProjectLink(projectName);
+        manageProjectPage.fillProjectName(newName);
         manageProjectPage.clickUpdate();
 
         //Assert
-        Assert.assertFalse(manageProjectPage.returnProjectExists(nomeProjeto));
+        Assert.assertEquals(manageProjectPage.returnCreatedProject(newName), newName);
     }
     @Test
     public void createNewPrivateProject(){

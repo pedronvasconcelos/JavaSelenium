@@ -41,6 +41,10 @@ public class IssuePage extends PageBase {
         return getText(severityText);
     }
 
+    public boolean returnIfIssueExists(String issue){
+        By issueName = By.xpath("//td/a[text()='" + issue + "']");
+        return returnIfElementExists(issueName);
+    }
 
     public void clickUpdate(){
         click(updateButton);

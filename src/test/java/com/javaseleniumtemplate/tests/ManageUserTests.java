@@ -129,7 +129,7 @@ public class ManageUserTests extends TestBase {
         String password = "adm";
         String username = "viewerUser";
         String realname = "viewer User";
-        String email = "viewer@user.com.br";
+        String email = "viewerCreate@user.com.br";
         String accessLevel = "viewer";
         String successMessage = "Created user " + username + " with an access level of viewer";
 
@@ -259,7 +259,7 @@ public class ManageUserTests extends TestBase {
         String user = "administrator";
         String password = "adm";
         String username = "updateEmail";
-        String newEmail = "newEmail@user.com.br";
+        String newEmail = "newemail@user.com.br";
         String successMessage = "Operation successful.";
 
         //Test
@@ -318,7 +318,7 @@ public class ManageUserTests extends TestBase {
         //Parameters
         String user = "administrator";
         String password = "adm";
-        String username = "duplicated2";
+        String username = "duplicated22";
         String realname = "Dupli user";
         String email = "duplicated@email.com.br";
         String errorExpected = "APPLICATION ERROR #813";
@@ -350,7 +350,7 @@ public class ManageUserTests extends TestBase {
         String user = "administrator";
         String password = "adm";
         String username = "duplicate";
-        String realname = "Duplicate Iser";
+        String realname = "Duplicate User";
         String email = "duplicate1user@email.com.br";
         String errorExpected = "APPLICATION ERROR #800";
 

@@ -286,9 +286,7 @@ public class PageBase {
         return url;
     }
     public String getTextAlert() {
-        String text = DriverFactory.INSTANCE.switchTo().alert().getText();
-        ExtentReportUtils.addTestInfo(3, text);
-        return text;
+        return DriverFactory.INSTANCE.switchTo().alert().getText();
     }
     public void frameIn(By locator) {
         DriverFactory.INSTANCE.switchTo().frame(waitForElement(locator));
