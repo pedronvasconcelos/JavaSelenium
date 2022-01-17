@@ -3,7 +3,10 @@ node ("desafioSelenium"){
                 git branch: 'master', url:'https://github.com/pedronvasconcelos/desafioSelenium.git'
         }
         stage ('restore DB'){
-           start cmd.exe /c C:\desafioSelenium\restore.bat
+            bat """
+               cd c:\DesafioSelenium
+               mysql -u mantisbt -pmantisbt  -e "source bugtracker_backup.sql;"
+             """
            }
         stage('Builds + Tests') {
                bat 'mvn clean test'
