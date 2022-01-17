@@ -4,6 +4,7 @@ import com.javaseleniumtemplate.GlobalParameters;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -93,12 +94,13 @@ public class Browsers {
         return new RemoteWebDriver(url, capabilities);
     }
 
-    public static WebDriver getLocalInternetExplorer(){
-        return new InternetExplorerDriver();
+    public static WebDriver getLocalEdgeExplorer() {
+        System.setProperty("webdriver.edge.driver", ".//msedgedriver.exe");
+        return new EdgeDriver();
     }
 
-    public static WebDriver getRemoteInternetExplorer(){
-        DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
+    public static WebDriver getRemoteEdgeExplorer() {
+        DesiredCapabilities capabilities = DesiredCapabilities.edge();
 
         URL url = null;
         try {
