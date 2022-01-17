@@ -1,5 +1,4 @@
-pipeline {
-   agent any
+node ("Built-In Node"){
    stages {
         stage('Git Checkout') {
             steps {
@@ -8,7 +7,7 @@ pipeline {
         }
         stage ('restore DB') {
                     steps{
-                       start cmd.exe /c C:\desafioSelenium\restore.bat
+                       start cmd.exe  C:\desafioSelenium\restore.bat
                     }
                }
         stage ('Builds + Tests') {
