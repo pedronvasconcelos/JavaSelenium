@@ -43,12 +43,10 @@ public class ReportIssueTests extends TestBase {
         String priority = dataDriven[3];
         String usuario = "administrator";
         String senha = "adm";
-        String project = "Automacao";
         String categoria = "[All Projects] Automacao";
 
         loginFlows.signIn(usuario, senha);
         mainPage.clickReportIssue();
-        bugReportPage.selectProject(project);
         bugReportPage.clickSelectProject();
         bugReportPage.selectCategory(categoria);
         bugReportPage.fillResume(resumo);
@@ -63,7 +61,6 @@ public class ReportIssueTests extends TestBase {
         softAssert.assertEquals(descricao, issuePage.returnBugDescription());
         softAssert.assertEquals("Automação", issuePage.returnCategory());
         softAssert.assertEquals(priority, issuePage.returnPriority());
-        softAssert.assertEquals(severity, issuePage.returnSeverity());
         softAssert.assertAll();
 
 
@@ -80,7 +77,6 @@ public class ReportIssueTests extends TestBase {
         //Parameteres
         String usuario = "administrator";
         String senha = "adm";
-        String project = "Automacao";
         String categoria = "[All Projects] Automacao";
         String resumo = "Resumo teste automático";
         String descricao = "Descrição teste automático";
@@ -88,7 +84,6 @@ public class ReportIssueTests extends TestBase {
         //Test
         loginFlows.signIn(usuario, senha);
         mainPage.clickReportIssue();
-        bugReportPage.selectProject(project);
         bugReportPage.clickSelectProject();
         bugReportPage.selectCategory(categoria);
         bugReportPage.fillResume(resumo);
@@ -115,7 +110,6 @@ public class ReportIssueTests extends TestBase {
         //Parameteres
         String usuario = "administrator";
         String senha = "adm";
-        String project = "Automacao";
         String categoria = "[All Projects] Automacao";
         String descricao = "Descrição teste automático";
         String alertMessage = "Please fill out this field.";
@@ -124,7 +118,6 @@ public class ReportIssueTests extends TestBase {
         //Test
         loginFlows.signIn(usuario, senha);
         mainPage.clickReportIssue();
-        bugReportPage.selectProject(project);
         bugReportPage.clickSelectProject();
         bugReportPage.selectCategory(categoria);
         bugReportPage.fillDescription(descricao);
@@ -146,7 +139,6 @@ public class ReportIssueTests extends TestBase {
         //Parameteres
         String usuario = "administrator";
         String senha = "adm";
-        String project = "Automacao";
         String categoria = "[All Projects] Automacao";
         String resumo = "High priority issue";
         String descricao = "High-risk issue";
@@ -155,7 +147,6 @@ public class ReportIssueTests extends TestBase {
         //Test
         loginFlows.signIn(usuario, senha);
         mainPage.clickReportIssue();
-        bugReportPage.selectProject(project);
         bugReportPage.clickSelectProject();
         bugReportPage.selectCategory(categoria);
         bugReportPage.fillResume(resumo);
@@ -183,7 +174,6 @@ public class ReportIssueTests extends TestBase {
         //Parameteres
         String usuario = "administrator";
         String senha = "adm";
-        String project = "Automacao";
         String categoria = "[All Projects] Automacao";
         String resumo = "Issue com arquivo upado";
         String descricao = "Descrição arquivo upado";
@@ -192,7 +182,6 @@ public class ReportIssueTests extends TestBase {
         //Test
         loginFlows.signIn(usuario, senha);
         mainPage.clickReportIssue();
-        bugReportPage.selectProject(project);
         bugReportPage.clickSelectProject();
         bugReportPage.selectCategory(categoria);
         bugReportPage.fillResume(resumo);
@@ -220,7 +209,6 @@ public class ReportIssueTests extends TestBase {
         //Parameteres
         String usuario = "administrator";
         String senha = "adm";
-        String project = "Automacao";
         String categoria = "[All Projects] Automacao";
         String resumo = "Issue com arquivo upado acima do tamanho maximo";
         String descricao = "Descrição arquivo upado acima do tamanho maximo";
@@ -229,7 +217,6 @@ public class ReportIssueTests extends TestBase {
         //Test
         loginFlows.signIn(usuario, senha);
         mainPage.clickReportIssue();
-        bugReportPage.selectProject(project);
         bugReportPage.clickSelectProject();
         bugReportPage.selectCategory(categoria);
         bugReportPage.fillResume(resumo);
