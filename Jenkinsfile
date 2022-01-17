@@ -4,7 +4,7 @@ node ("desafioSelenium"){
         }
         stage ('restore DB'){
             bat '''
-               cd c:\DesafioSelenium
+               cd c:/DesafioSelenium
                mysql -u mantisbt -pmantisbt  -e "source bugtracker_backup.sql;"
              '''
            }
