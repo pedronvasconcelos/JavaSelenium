@@ -190,7 +190,6 @@ public class ReportIssueTests extends TestBase {
         //Assertions
         Assert.assertEquals(resumo, issuePage.returnBugSummary());
         Assert.assertEquals(descricao, issuePage.returnBugDescription());
-        Assert.assertEquals("Automação", issuePage.returnCategory());
         Assert.assertTrue(issuePage.returnFileName().contains("error.png"));
 
     }
