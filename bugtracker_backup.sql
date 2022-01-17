@@ -261,7 +261,7 @@ CREATE TABLE IF NOT EXISTS `mantis_category_table` (
 /*!40000 ALTER TABLE `mantis_category_table` DISABLE KEYS */;
 INSERT INTO `mantis_category_table` (`id`, `project_id`, `user_id`, `name`, `status`) VALUES
 	(1, 0, 0, 'General', 0),
-	(2, 0, 0, 'Automação', 0);
+	(2, 0, 0, 'Automacao', 0);
 /*!40000 ALTER TABLE `mantis_category_table` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela bugtracker.mantis_config_table

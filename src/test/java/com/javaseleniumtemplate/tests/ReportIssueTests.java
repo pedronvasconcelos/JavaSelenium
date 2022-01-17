@@ -43,8 +43,8 @@ public class ReportIssueTests extends TestBase {
         String priority = dataDriven[3];
         String usuario = "administrator";
         String senha = "adm";
-        String project = "Automação";
-        String categoria = "[All Projects] Automação";
+        String project = "Automacao";
+        String categoria = "[All Projects] Automacao";
 
         loginFlows.signIn(usuario, senha);
         mainPage.clickReportIssue();
@@ -80,8 +80,8 @@ public class ReportIssueTests extends TestBase {
         //Parameteres
         String usuario = "administrator";
         String senha = "adm";
-        String project = "Automação";
-        String categoria = "[All Projects] Automação";
+        String project = "Automacao";
+        String categoria = "[All Projects] Automacao";
         String resumo = "Resumo teste automático";
         String descricao = "Descrição teste automático";
 
@@ -115,8 +115,8 @@ public class ReportIssueTests extends TestBase {
         //Parameteres
         String usuario = "administrator";
         String senha = "adm";
-        String project = "Automação";
-        String categoria = "[All Projects] Automação";
+        String project = "Automacao";
+        String categoria = "[All Projects] Automacao";
         String descricao = "Descrição teste automático";
         String alertMessage = "Please fill out this field.";
 
@@ -146,8 +146,8 @@ public class ReportIssueTests extends TestBase {
         //Parameteres
         String usuario = "administrator";
         String senha = "adm";
-        String project = "Automação";
-        String categoria = "[All Projects] Automação";
+        String project = "Automacao";
+        String categoria = "[All Projects] Automacao";
         String resumo = "High priority issue";
         String descricao = "High-risk issue";
         String priority = "high";
@@ -183,8 +183,8 @@ public class ReportIssueTests extends TestBase {
         //Parameteres
         String usuario = "administrator";
         String senha = "adm";
-        String project = "Automação";
-        String categoria = "[All Projects] Automação";
+        String project = "Automacao";
+        String categoria = "[All Projects] Automacao";
         String resumo = "Issue com arquivo upado";
         String descricao = "Descrição arquivo upado";
         String file = GlobalParameters.FILES_PATH + "error.png";
@@ -220,8 +220,8 @@ public class ReportIssueTests extends TestBase {
         //Parameteres
         String usuario = "administrator";
         String senha = "adm";
-        String project = "Automação";
-        String categoria = "[All Projects] Automação";
+        String project = "Automacao";
+        String categoria = "[All Projects] Automacao";
         String resumo = "Issue com arquivo upado acima do tamanho maximo";
         String descricao = "Descrição arquivo upado acima do tamanho maximo";
         String file = GlobalParameters.FILES_PATH + "bigerror.png";
