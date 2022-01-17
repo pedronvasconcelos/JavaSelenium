@@ -59,7 +59,6 @@ public class ReportIssueTests extends TestBase {
         //Assertions
         softAssert.assertEquals(resumo, issuePage.returnBugSummary());
         softAssert.assertEquals(descricao, issuePage.returnBugDescription());
-        softAssert.assertEquals("Automação", issuePage.returnCategory());
         softAssert.assertEquals(priority, issuePage.returnPriority());
         softAssert.assertAll();
 
