@@ -11,4 +11,4 @@ node ("desafioSelenium"){
         stage('Builds + Tests') {
                bat 'mvn clean test'
             }
-}c
+}
