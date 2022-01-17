@@ -1,4 +1,4 @@
-node ("Built-In Node"){
+node ("desafioSelenium"){
    stages {
         stage('Git Checkout') {
             steps {
