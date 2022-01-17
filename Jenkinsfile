@@ -7,7 +7,7 @@ node ("Built-In Node"){
         }
         stage ('restore DB') {
                     steps{
-                       start cmd.exe  C:\desafioSelenium\restore.bat
+                       start cmd.exe /c C:/desafioSelenium/restore.bat
                     }
                }
         stage ('Builds + Tests') {
