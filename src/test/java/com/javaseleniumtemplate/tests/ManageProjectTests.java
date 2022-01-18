@@ -4,7 +4,9 @@ package com.javaseleniumtemplate.tests;
 import com.javaseleniumtemplate.bases.TestBase;
 import com.javaseleniumtemplate.dbsteps.ProjetosDbSteps;
 import com.javaseleniumtemplate.flows.LoginFlows;
-import com.javaseleniumtemplate.pages.*;
+import com.javaseleniumtemplate.pages.MainPage;
+import com.javaseleniumtemplate.pages.ManagePage;
+import com.javaseleniumtemplate.pages.ManageProjectPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

@@ -3,7 +3,10 @@ package com.javaseleniumtemplate.tests;
 
 import com.javaseleniumtemplate.bases.TestBase;
 import com.javaseleniumtemplate.flows.LoginFlows;
-import com.javaseleniumtemplate.pages.*;
+import com.javaseleniumtemplate.pages.MainPage;
+import com.javaseleniumtemplate.pages.ManagePage;
+import com.javaseleniumtemplate.pages.ManageProjectPage;
+import com.javaseleniumtemplate.pages.ManageTagPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

@@ -3,11 +3,12 @@ package com.javaseleniumtemplate.tests;
 
 import com.javaseleniumtemplate.bases.TestBase;
 import com.javaseleniumtemplate.flows.LoginFlows;
-import com.javaseleniumtemplate.pages.*;
-
+import com.javaseleniumtemplate.pages.MainPage;
+import com.javaseleniumtemplate.pages.ManageGlobalProfilePage;
+import com.javaseleniumtemplate.pages.ManagePage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
+
 public class ManageProfilesTests extends TestBase {
 
     //Objects
