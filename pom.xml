@@ -50,6 +50,26 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.26</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>4.1</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.8.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.microsoft.edge</groupId>
+            <artifactId>msedge-selenium-tools-java</artifactId>
+            <version>[3.141.0,)</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -66,7 +86,7 @@
                 <version>2.12.4</version>
                 <configuration>
                     <suiteXmlFiles>
-                       <suiteXmlFile>testngsuite.xml</suiteXmlFile>
+                        <suiteXmlFile>testngsuite.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>

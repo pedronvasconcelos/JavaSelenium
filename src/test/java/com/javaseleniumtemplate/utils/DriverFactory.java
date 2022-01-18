@@ -30,7 +30,7 @@ public class DriverFactory {
                 }
             }
 
-            if(execution.equals("remota")){
+            if(execution.equals("remote")){
                 if(browser.equals("chrome")){
                     INSTANCE = Browsers.getRemoteChrome();
                 }else if(browser.equals("chromeHeadless")){
