@@ -16,7 +16,7 @@ O que foi feito:
 - Testes agendados utilizando Jenkins; 
 - Criado uma Pipeline no Jenkinss para CD-CI;
 - Criado um Agent local para rodar os testes utilizando Jenkins;
-- Projeto configurado para rodar utilizando SeleniumHub;
+- Projeto configurado para rodar utilizando SeleniumGrid;
 - WebDriver Manager;
 
 ## Setup
