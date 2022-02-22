@@ -90,7 +90,9 @@ public class Browsers {
 
     public static WebDriver getRemoteFirefox(){
         DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-
+        FirefoxOptions firefoxOptions = new FirefoxOptions();
+        firefoxOptions.addArguments("--lang=en-US");
+        capabilities.setCapability(FirefoxOptions.FIREFOX_OPTIONS, firefoxOptions);
         URL url = null;
         try {
             url = new URL(seleniumHub);
@@ -102,11 +104,11 @@ public class Browsers {
     }
 
     public static WebDriver getLocalEdgeExplorer() {
+        DesiredCapabilities capabilities = DesiredCapabilities.edge();
         EdgeOptions edgeOptions = new EdgeOptions();
         edgeOptions.addArguments("--lang=en-US");
-
         WebDriverManager.edgedriver().setup();
-        return new EdgeDriver(edgeOptions);
+        return new EdgeDriver(capabilities);
     }
 
     public static WebDriver getRemoteEdgeExplorer() {
