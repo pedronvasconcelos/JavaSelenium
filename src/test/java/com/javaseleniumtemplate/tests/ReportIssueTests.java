@@ -23,10 +23,6 @@ public class ReportIssueTests extends TestBase {
     ViewIssuePage viewIssuePage;
     SoftAssert softAssert;
 
-
-
-
-
     @Test(dataProvider="dataIssuesCSVProvider", dataProviderClass = DataDriven.class)
     public void registerNewIssueDDT(String[] dataDriven)  {
         //Objects instances
