@@ -226,7 +226,6 @@ public class PageBase {
         File filePath = new File(file);
         WebElement target = waitForElement(locator);
         WebElement input = (WebElement)  javaScriptExecutor.executeScript("var target = arguments[0]," +
-
                 "    offsetX = arguments[1]," +
                 "    offsetY = arguments[2]," +
                 "    document = target.ownerDocument || document," +

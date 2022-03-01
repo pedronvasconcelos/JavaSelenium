@@ -1,6 +1,7 @@
 package com.javaseleniumtemplate.bases;
 
 import com.javaseleniumtemplate.GlobalParameters;
+import com.javaseleniumtemplate.dbsteps.RestoreDBSteps;
 import com.javaseleniumtemplate.utils.DriverFactory;
 import com.javaseleniumtemplate.utils.ExtentReportUtils;
 import org.testng.ITestResult;
@@ -27,11 +28,11 @@ public class TestBase {
     public void afterTest(ITestResult result){
         ExtentReportUtils.addTestResult(result);
         DriverFactory.quitInstace();
-
     }
 
     @AfterSuite
     public void afterSuite(){
+        RestoreDBSteps.restoreDB();
         ExtentReportUtils.generateReport();
     }
 }
