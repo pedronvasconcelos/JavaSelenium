@@ -1,40 +1,4 @@
-# Desafio Automação Web - Selenium
 
-## Créditos
-  
-Desafio - Base2 Automação Web
-
-O que foi feito:
-
-- 52 Scripts de teste;
-- Utilizado Data-Driven no CT registerNewIssueDDT;
-- Testes executados em 3 navegadores (Chrome, Edge e Firefox);
-- Screenshots automáticas a cada passo com ExtendReports;
-- Restore do Banco de Dados por linha de comando executando arquivo .sql através da JenkinsFile;
-- Inserção de dados no Banco utilizando query com Insert;
-- JavaScript Executor utilizado para interagir com alguns elementos;
-- Testes agendados utilizando Jenkins; 
-- Criado uma Pipeline no Jenkinss para CD-CI;
-- Criado um Agent local para rodar os testes utilizando Jenkins;
-- Projeto configurado para rodar utilizando SeleniumGrid;
-- WebDriver Manager;
-
-## Setup
-
-- Versão 1.8 do Java JDK instalada no computador (https://www.oracle.com/br/java/technologies/javase/javase-jdk8-downloads.html)
-- Versão community do IntelliJ IDEA instalada no computador (https://www.jetbrains.com/pt-br/idea/download/#section=windows)
-- Versão do Jenkins instalada no computador: Versão 2.319.1 (https://www.jenkins.io/download/)
-
-## Arquitetura
-
-- Linguagem Java
-- Java Kit Development versão 8
-- Gestão de dependências: Maven
-- Framework de Testes automatizass web: Selenium WebDriver
-- Orquestrador de testes: TestNG
-- Relatório de testes automatizados: ExtentReports
-
-## Cenários:
 ### [LoginTests](https://github.com/pedronvasconcelos/desafioSelenium/blob/master/src/test/java/com/javaseleniumtemplate/tests/LoginTests.java)<br />
 1- Login Successfully; <br />
 2- Login with JavaScript; <br />
